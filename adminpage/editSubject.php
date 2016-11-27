@@ -1,27 +1,37 @@
 <?php
 include("../includes/checksession.php");
 include("../lib/config.php");
-    if (isset($_POST['submit'])) {
-        # code...
-        $subjectName=$_POST['subject_name'];
-        $subjectMarks=$_POST['subject_marks'];
-        $subjectSemester=$_POST['subject_semester'];
+	
+	if (isset($_GET['id'])) {
+		# code...
+		$subjectId=$_GET['id'];
+		$query="Select * from subject where id='$subjectId' ";
+		$queryResult=mysqli_query($conn,$query);
+		$subjects=mysqli_fetch_assoc($queryResult);
+	}
 
-        $query="Insert into subject set name= '$subjectName ', total_marks='$subjectMarks' , semester='$subjectSemester'";
-        echo $subjectName;
-        //.$subjectSemester.$subjectMarks;
-      
-        $result=mysqli_query($conn,$query);
-        if ($result) {
-        # code...
-        header("Location:listSubject.php");
-    }
-    else{
-        header("Location:../404.html");
-        }
-    }
-    
+	if (isset($_POST['submit'])) {
+		# code...
+		$subjectName=$_POST['subject_name'];
+		$totalMarks=$_POST['subject_marks'];
+		$semester=$_POST['subject_semester'];
+		$subjectId=$_POST['subject_id'];
+		echo $subjectName;
+		echo $subjectId;
+		$query="UPDATE subject SET name='$subjectName' ,total_marks='$totalMarks', semester='$semester' WHERE id='$subjectId' ";
+		$result=mysqli_query($conn,$query);
+		if ($result) {
+			# code...
+			header("Location:listSubject.php");
+		}
+		else{
+			header("Location:../404.html");
+		}
+
+	}
+
 ?>
+
 
 <html lang="en">
 <head>
@@ -39,14 +49,16 @@ include("../lib/config.php");
             <div class="col-sm-8">
                 <h4>Student Information </h4>
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="addSubject.php" role="form">
+                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="editSubject.php" role="form">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Subject Name" name="subject_name">
+                                <input type="text" class="form-control" required="required" placeholder="Subject Name" name="subject_name" 
+                                value= " <?php echo $subjects['name']; ?> " >
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" required="required" placeholder="Total Marks" name="subject_marks">
+                                <input type="number" class="form-control" required="required" placeholder="Total Marks" name="subject_marks"
+                                value= " <?php echo $subjects['total_marks']; ?> ">
                             </div>
                             <div class="form-group">
                             
@@ -63,10 +75,10 @@ include("../lib/config.php");
                                 </select>
                             </div>
 
-                            
+                            <input type="hidden" value= "<?php echo $subjects['id']; ?>" name="subject_id"/>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg" name="submit">Add Subject</button>
+                                <button type="submit" class="btn btn-primary btn-lg" name="submit">Update Subject</button>
                             </div>
                         </div>
                        

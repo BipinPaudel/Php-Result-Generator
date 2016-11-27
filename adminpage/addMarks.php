@@ -32,6 +32,7 @@ include("../lib/config.php");
 				<th> Email </th>
 				<th> Address </th>
 				<th> Mobile </th>
+				<th> Status </th>
 			</tr>
 		</thead>
 			
@@ -43,6 +44,25 @@ include("../lib/config.php");
 				<td> <?php echo $row['email']; ?> </td>
 				<td> <?php echo $row['address']; ?> </td>
 				<td> <?php echo $row['mobile']; ?> </td>
+				<td>
+					<?php
+						$suid= $row['id'];
+
+						$query1="select * from student_mark where suid='$suid' and semester=' $semester ' ";
+
+						$queryMarks=mysqli_query($conn,$query1);
+						$queryAssoc=mysqli_fetch_assoc($queryMarks);
+						// echo $suid;
+						
+						if (count($queryAssoc)>0) {
+							# code...
+							echo "Added";
+						}
+						else{
+							echo "Not added";
+						}
+					 ?>
+				</td>
 				<td> <a href="marksForm.php?
 
 					studentId=<?php echo $row['id'];?>&

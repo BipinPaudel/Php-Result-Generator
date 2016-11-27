@@ -1,5 +1,5 @@
 <?php 
-// include("../includes/checksession.php");
+include("../includes/checksession.php");
 include("../lib/config.php");
 
 if (isset($_GET['id'])) {
@@ -50,6 +50,7 @@ $result=mysqli_query($conn,$query);
 		<thead>
 			<tr>
 				<th> Name </th>
+				<th> Roll </th>
 				<th> Email </th>
 				<th> Address </th>
 				<th> Mobile </th>
@@ -61,10 +62,11 @@ $result=mysqli_query($conn,$query);
 			<tr>
 
 				<td> <?php echo $row['name']; ?> </td>
-				<td> <?php echo $row['name']; ?> </td>
-				<td> <?php echo $row['name']; ?> </td>
-				<td> <?php echo $row['name']; ?> </td>
-				<td> <a href=""> Edit </a>   </td>
+				<td> <?php echo $row['roll']; ?> </td>
+				<td> <?php echo $row['email']; ?> </td>
+				<td> <?php echo $row['address']; ?> </td>
+				<td> <?php echo $row['mobile']; ?> </td>
+				<td> <a href="editStudent.php?id=<?php echo $row['id']; ?>"> Edit </a>   </td>
 				<td><a href="listStudent.php?id=<?php echo $row['id']; ?>"> Delete </a> </td>
 			</tr>
 			<?php } ?>

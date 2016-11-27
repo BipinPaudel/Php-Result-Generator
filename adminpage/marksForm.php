@@ -39,13 +39,13 @@ if (isset($_GET['studentId']) && isset($_GET['semester']) ) {
 if (isset($_POST['submitMarks']) && isset($_POST['studentId']))  {
 	# code...
 	$studentId=$_POST['studentId'];
-
+	$semester=$_POST['semester'];
 if(count($_POST["subjects"])>0)
 	{
 		for($i=0;$i<count($_POST["subjects"]);$i++)
 		{
 			$fieldname = $_POST["subjects"][$i];
-			$sql = "insert into student_mark set stid=$studentId,suid='".$_POST["subjects"][$i]."',obtained_marks='".$_POST[$fieldname]."'";
+			$sql = "insert into student_mark set semester='$semester', stid=$studentId, suid='".$_POST["subjects"][$i]."', obtained_marks='".$_POST[$fieldname]."'";
 			$result=mysqli_query($conn,$sql);
 
 		}
@@ -92,6 +92,7 @@ if(count($_POST["subjects"])>0)
 				<td> 
 					
 						<input type="hidden" name="subjects[]" value="<?php  echo $row['id']; ?>";>
+						<input type="hidden" name="semester" value= "<?php echo $semester; ?>" />
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">

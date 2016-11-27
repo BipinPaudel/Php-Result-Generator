@@ -1,12 +1,11 @@
 <?php 
+include("../includes/checksession.php");
 include("../lib/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php include("../includes/linkfile.php");
-
-	?>
+	<?php include("../includes/linkfile.php");?>
 
 
 	<script type="text/javascript">

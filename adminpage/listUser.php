@@ -6,16 +6,16 @@ if (isset($_GET['idForDelete'])) {
 	# code...
 	$id=$_GET['idForDelete'];
 	
-	$query="Delete from subject where id='$id'";
+	$query="Delete from user where id='$id'";
 	$resultForDelete=mysqli_query($conn,$query);
 }
-$semester="2";
-if (isset($_POST['submitSemester'])) {
-	# code...
-	$semester=$_POST['subject_semester'];
+// $semester="2";
+// if (isset($_POST['submitSemester'])) {
+// 	# code...
+// 	$semester=$_POST['subject_semester'];
 
-}
-$query="Select * from subject where semester='$semester'";
+// }
+$query="Select * from user ";
 $result=mysqli_query($conn,$query);
 
 
@@ -33,9 +33,9 @@ $result=mysqli_query($conn,$query);
 	include("adminincludes/adminheader.php");
 	?>
 
-	<a href="addSubject.php"> <h2> Add new Subject </h2> </a>
+	<a href="addUser.php"> <h2> Add new User </h2> </a>
 
-	<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="listSubject.php" role="form">
+	<!-- <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="listSubject.php" role="form">
 		<div class="form-group">
 			<select class="form-control" name="subject_semester">
 				<option selected value="1"> 1 </option>
@@ -52,7 +52,7 @@ $result=mysqli_query($conn,$query);
         	<button type="submit" class="btn btn-primary btn-lg" name="submitSemester">Go</button>
     	</div>
 	</form>
-
+ -->
 
 
 	<div class="tableclass">
@@ -60,8 +60,9 @@ $result=mysqli_query($conn,$query);
 		<thead>
 			<tr>
 				<th> Name </th>
-				<th> Semester </th>
-				<th> Total Marks </th>
+				<th> Username </th>
+				<th> Role </th>
+				<th> Status </th>
 				
 			</tr>
 		</thead>
@@ -71,11 +72,11 @@ $result=mysqli_query($conn,$query);
 			<tr>
 
 				<td> <?php echo $row['name']; ?> </td>
-				<td> <?php echo $row['semester']; ?> </td>
-				<td> <?php echo $row['total_marks']; ?> </td>
-				
-				<td> <a href="editSubject.php?id= <?php echo $row['id'];?> "> Edit </a>   </td>
-				<td><a href="listSubject.php?idForDelete=<?php echo $row['id']; ?>"> Delete </a> </td>
+				<td> <?php echo $row['username']; ?> </td>
+				<td> <?php echo $row['role']; ?> </td>
+				<td> <?php echo $row['status']; ?> </td>
+				<td> <a href="editUser.php?id= <?php echo $row['id'];?> "> Edit </a>   </td>
+				<td><a href="listUser.php?idForDelete=<?php echo $row['id']; ?>"> Delete </a> </td>
 			</tr>
 			<?php } ?>
 		</tbody> 

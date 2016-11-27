@@ -9,7 +9,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+                <!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a> -->
+                <h1> Dwit Result</h1>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -21,6 +22,7 @@
                     <li> <a href="listStudent.php">Student </a> </li>
                     <li> <a href="listSubject.php">Subject</a> </li>
                     <li> <a href="listUser.php">User </a></li>
+                    <li> <a href="logout.php">Logout </a> </li>
 
 
                     <!-- <li class="dropdown">

@@ -1,6 +1,19 @@
 <?php 
 include("../includes/checksession.php");
 include("../lib/config.php");
+
+if (isset($_GET['id'])) {
+    # code...
+
+    $studentId=$_GET['id'];
+
+    $query="select * from student where id= '$studentId'";
+    $studentQuery=mysqli_query($conn,$query);
+    $students=mysqli_fetch_assoc($studentQuery);
+    // echo $students['name'];
+    // exit;
+}
+
 if(isset($_POST['submit'])){
 		$name=$_POST['student_name'];
 		$address=$_POST['student_address'];
@@ -10,11 +23,10 @@ if(isset($_POST['submit'])){
 		$image=$_POST['student_image'];
         $roll=$_POST['student_roll'];
 
-
-		
-
-
-	$query= "Insert into student set name= '$name', address= '$address' ,roll='$roll', batch ='$batch', mobile='$mobile',email='$email',image='$image' ";
+        $studentId=$_POST['studentId'];
+     
+	$query= "update student set name= '$name', address= '$address' ,roll='$roll', batch ='$batch', mobile='$mobile',email='$email',
+    image='$image'  where id = '$studentId'";
 
 	$result=mysqli_query($conn,$query);
 	if ($result) {
@@ -43,15 +55,19 @@ if(isset($_POST['submit'])){
             <div class="col-sm-8">
                 <h4>Student Information </h4>
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="addStudent.php" role="form">
+                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="editStudent.php" role="form">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Full Name" name="student_name">
+                                <input type="text" class="form-control" required="required" name="student_name" 
+                                value= "<?php echo $students['name']; ?>" >
                             </div>
+
+                            <input type="hidden" value="<?php echo $students['id']; ?> " name="studentId"/>
+
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Address"
-                                name="student_address">
+                                <input type="text" class="form-control" required="required" name="student_address"
+                                value="<?php echo $students['address']; ?>">
                             </div>
                             <div class="form-group">
                                
@@ -64,14 +80,16 @@ if(isset($_POST['submit'])){
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Roll number" name="student_roll">
+                                <input type="text" class="form-control" required="required" name="student_roll"
+                                value= "<?php echo $students['roll']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Mobile no." name="student_mobile">
+                                <input type="text" class="form-control" required="required" name="student_mobile"
+                                value="<?php echo $students['mobile']; ?>">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" required="required" placeholder="Email Id"
-                                name="student_email">
+                                <input type="text" class="form-control" required="required" name="student_email"
+                                value="<?php echo $students['email']; ?>">
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Image" name="student_image">
