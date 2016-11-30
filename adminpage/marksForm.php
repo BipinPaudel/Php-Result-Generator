@@ -1,5 +1,5 @@
 <?php
-// include("../includes/checksession.php");
+include("../includes/checksession.php");
 include("../lib/config.php");
 
 
@@ -69,7 +69,12 @@ if(count($_POST["subjects"])>0)
 	include("adminincludes/adminheader.php");
 	?>
 	
-	<h1> Hello Handsome <?php echo $nameOfStudent; ?> </h1>
+	<h1> Hello <?php 
+		$query="Select name from student where id=  ".$_GET['studentId']."";
+		$queryquery=mysqli_query($conn,$query);
+		$queryassoc=mysqli_fetch_assoc($queryquery);
+		echo $queryassoc['name'];
+	 ?> </h1>
 
 	
 

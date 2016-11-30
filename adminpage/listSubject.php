@@ -32,7 +32,14 @@ $result=mysqli_query($conn,$query);
 	<?php
 	include("adminincludes/adminheader.php");
 	?>
-
+	<div class="class_for_margin">
+	<?php if (isset($_SESSION['message'])) {
+		# code...
+	
+		echo $_SESSION['message'];
+		$_SESSION['message']=null;
+		 
+	} ?>
 	<a href="addSubject.php"> <h2> Add new Subject </h2> </a>
 
 	<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="listSubject.php" role="form">
@@ -82,6 +89,6 @@ $result=mysqli_query($conn,$query);
 	</table>
 </div>
 
-
+</div>
 </body>
 </html>

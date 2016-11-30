@@ -42,6 +42,12 @@ h6 {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
+
+.class_for_margin{
+  margin-left: 20px;
+  margin: 20px;
+}
+
 a {
   color: #34495e;
   -webkit-transition: 300ms;

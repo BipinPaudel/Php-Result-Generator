@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$query);
 	<?php
 	include("adminincludes/adminheader.php");
 	?>
-
+<div class="class_for_margin">
 	<a href="addUser.php"> <h2> Add new User </h2> </a>
 
 	<!-- <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="listSubject.php" role="form">
@@ -82,7 +82,7 @@ $result=mysqli_query($conn,$query);
 		</tbody> 
 	</table>
 </div>
-
+</div>
 
 </body>
 </html>

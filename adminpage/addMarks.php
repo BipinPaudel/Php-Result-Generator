@@ -23,7 +23,7 @@ include("../lib/config.php");
 	<?php
 	include("adminincludes/adminheader.php");
 	?>
-
+<div class="class_for_margin">
 	<div class="tableclass">
 	<table class="table table-hover">
 		<thead>
@@ -46,14 +46,13 @@ include("../lib/config.php");
 				<td> <?php echo $row['mobile']; ?> </td>
 				<td>
 					<?php
-						$suid= $row['id'];
+						$stid= $row['id'];
 
-						$query1="select * from student_mark where suid='$suid' and semester=' $semester ' ";
+						$query1="select * from student_mark where stid='$stid' and semester=' $semester ' ";
 
 						$queryMarks=mysqli_query($conn,$query1);
 						$queryAssoc=mysqli_fetch_assoc($queryMarks);
-						// echo $suid;
-						
+				
 						if (count($queryAssoc)>0) {
 							# code...
 							echo "Added";
@@ -75,6 +74,6 @@ include("../lib/config.php");
 	
 
 
-
+</div>
 </body>
 </html>

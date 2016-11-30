@@ -17,15 +17,24 @@
         <div class="row">
             <div class="col-sm-8">
                 <h4>Student Information </h4>
-                <div class="status alert alert-success" style="display: none"></div>
+                <?php  if (isset($_SESSION['message'])) { ?>
+                    <div class="status alert alert-success" style="display: none"></div>
+                    <?php
+                    echo $_SESSION['message'];
+                    $_SESSION['message']=null;
+
+                                    }?>
+                
                 <form id="main-contact-form" class="contact-form" name="contact-form" method="GET" action="viewAllResult.php" role="form">
                     <div class="row">
                         <div class="col-sm-5">
-                           
+                           Roll number
                             <div class="form-group">
                                 <input type="text" class="form-control" required="required" placeholder="Roll no"
                                 name="student_roll">
                             </div>
+
+                            Semester
                             <div class="form-group">
                                
 

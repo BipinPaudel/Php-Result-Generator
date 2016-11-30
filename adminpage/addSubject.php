@@ -6,7 +6,28 @@ include("../lib/config.php");
         $subjectName=$_POST['subject_name'];
         $subjectMarks=$_POST['subject_marks'];
         $subjectSemester=$_POST['subject_semester'];
+        
 
+        if ($subjectMarks>100) {
+            # code...
+            $_SESSION['message']="Marks cannot be more than 100";
+          if (isset($_SESSION['message'])) {
+        # code...
+        ?>
+        <div  class="alert alert-danger">
+            <?php 
+        echo $_SESSION['message'];
+        $_SESSION['message']=null;
+        ?>
+    </div>
+        <?php 
+    } 
+
+               
+
+        }else{
+
+        $_SESSION['message']="Subject added successfully";
         $query="Insert into subject set name= '$subjectName ', total_marks='$subjectMarks' , semester='$subjectSemester'";
         echo $subjectName;
         //.$subjectSemester.$subjectMarks;
@@ -19,6 +40,7 @@ include("../lib/config.php");
     else{
         header("Location:../404.html");
         }
+}
     }
     
 ?>
@@ -37,17 +59,21 @@ include("../lib/config.php");
 	<section id="contact-page" class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h4>Student Information </h4>
+                <h4>Subject Information </h4>
                 <div class="status alert alert-success" style="display: none"></div>
                 <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="addSubject.php" role="form">
                     <div class="row">
                         <div class="col-sm-5">
+                            Subject name
                             <div class="form-group">
                                 <input type="text" class="form-control" required="required" placeholder="Subject Name" name="subject_name">
                             </div>
+                            Total Marks
                             <div class="form-group">
                                 <input type="number" class="form-control" required="required" placeholder="Total Marks" name="subject_marks">
                             </div>
+
+                            Semester
                             <div class="form-group">
                             
                                 <select class="form-control" name="subject_semester">

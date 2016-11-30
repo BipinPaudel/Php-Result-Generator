@@ -19,13 +19,14 @@ include("../lib/config.php");
 	include("adminincludes/adminheader.php");
 	?>
 
-
+	<div class="class_for_margin">
 	<h2> Enter marks </h2>
 
-	<h3> Select batch and their semester </h3>
+	
 <form id="main-contact-form" class="contact-form" name="contact-form" method="get" action="addMarks.php" role="form">
 	<div class="row">
-        <div class="col-sm-5">		
+        <div class="col-sm-5">	
+        Semester	
 			<div class="form-group">
 	        	<select   class="form-control" name="subject_semester">
 		        	<option selected value="1"> 1 </option>
@@ -39,7 +40,7 @@ include("../lib/config.php");
 		            
 		        </select>
 		    </div>
-
+		Batch
 	     	<div class="form-group">                              
 
 		        <select  class="form-control" name="student_batch">
@@ -56,6 +57,7 @@ include("../lib/config.php");
 		</div>
 	</div>
 </form>
-
+</div>
 </body>
+
 </html>
